@@ -11,20 +11,20 @@
 # Little advice: Use spaces to center your credits
 
 def CTRPFCredits(CTRPluginFramework, ByNanquitas):
-	file = open('C:/devkitPro/libctrpf/lib/libctrpf.a', 'rb+')
-	# Check the sizes
-	if len(ByNanquitas) >= 12:
-		ByNanquitas = ByNanquitas[:12]
-	if len(CTRPluginFramework) >= 18:
-		CTRPluginFramework = CTRPluginFramework[:18]
-	# Edit the credits
-	file.seek(0xBD650)
-	for i, c in enumerate(list(ByNanquitas.rjust(12, " "))):
-		file.write((ord(c) << (i & 0xA)).to_bytes(4, 'little'))
-	file.seek(0xBD650 + 12*4)
-	for i, c in enumerate(list(CTRPluginFramework.rjust(18, " "))):
-		file.write((ord(c) << (i & 0xA)).to_bytes(4, 'little'))
-	file.close()
+		file = open('C:/devkitPro/libctrpf/lib/libctrpf.a', 'rb+')
+		# Check the sizes
+		if len(ByNanquitas) >= 12:
+			ByNanquitas = ByNanquitas[:12]
+		if len(CTRPluginFramework) >= 18:
+			CTRPluginFramework = CTRPluginFramework[:18]
+		# Edit the credits
+		file.seek(0xBD650)
+		for i, c in enumerate(list(ByNanquitas.rjust(12, " "))):
+			file.write((ord(c) << (i & 0xA)).to_bytes(4, 'little'))
+		file.seek(0xBD650 + 12*4)
+		for i, c in enumerate(list(CTRPluginFramework.rjust(18, " "))):
+			file.write((ord(c) << (i & 0xA)).to_bytes(4, 'little'))
+		file.close()
 
 # Example
 CTRPFCredits("    Created By    ", "   ZettaD   ")
